@@ -1,1 +1,616 @@
-hi
+//Mini Blocks Mod v1.4 by thejaustin
+//Don't steal this code! Do not take it as your own!
+//This is made for MCPE 0.10.5
+//Thanks to @byteandahalf on Twitter for helping me fix the X-Ray next to the new blocks
+
+
+
+//Entering Game
+function newLevel() {clientMessage(ChatColor.DARK_GREEN + "Welcome back to Minecraft PE!");
+{clientMessage(ChatColor.BLUE + "You are using the Mini Blocks Mod!");
+{clientMessage(ChatColor.GOLD + "This Mod was created by thejaustin");
+{clientMessage(ChatColor.RED + "I'm on Twitter!");
+{clientMessage(ChatColor.RED + "Username- @thejaustin");
+{clientMessage(ChatColor.DARK_AQUA + "Twitter Collab. Account- @ThePEModders");
+} } } } } }
+
+//Update Available
+
+var version="1.4";
+var checkForUpdate=false;
+var updateWindow=false; 
+var newUpdate;
+var updateMod; 
+var ctx = com.mojang.minecraftpe.MainActivity.currentMainActivity.get(); 
+ 
+ function checkVersion() {
+    var r  = new java.lang.Runnable() {
+        run: function() {
+            try {
+                var urls= new java.net.URL(" https://raw.githubusercontent.com/thejaustin/ModPE/master/MiniBlocksVersion ");
+                var check = urls.openConnection();
+                check.setRequestMethod("GET");
+                check.setDoOutput(true);
+                check.connect();
+                check.getContentLength();
+                var script = check.getInputStream();
+                var typeb = java.lang.reflect.Array.newInstance(java.lang.Byte.TYPE, 1024);
+                var byteCount = 0; 
+                var checkedVersion;
+                while((byteCount = script.read(typeb)) != -1) { 
+                    checkedVersion = new java.lang.String(typeb, 0, byteCount);               
+                }
+                newUpdate = checkedVersion;
+                if(version+"\n" != checkedVersion) {
+                    clientMessage("§8[MH] §fMini Blocks Mod has an update! " + newUpdate);
+                    updateWindow=true;
+                }
+                else if(version+"\n"==checkedVersion){
+                clientMessage("§8[MH] There aren't any updates right now");
+                }
+            }
+            catch(err) {
+                clientMessage("§8[MH] Update check failed ");
+                if(err=="JavaException: java.net.UnknownHostException: raw.githubusercontent.com") {
+                                clientMessage("§8[MH] Cannot connect to internet.");
+                            }
+                            else {
+                                clientMessage("§8[MH]   Error: \n" + err);
+                            } 
+            }
+        }
+    }
+    var threadt = new java.lang.Thread(r);
+    threadt.start();
+}
+function updateVersion() {
+    try {
+        var upd = new android.app.AlertDialog.Builder(ctx);
+        upd.setTitle("Mini Blocks Mod has an update!");
+        upd.setMessage("thejaustin's Mini Blocks Mod has an update!\nDo you want to update it now?\nCurrent version: " + version + "\nNew version: " + newUpdate);
+        upd.setNegativeButton("Not right now", new android.content.DialogInterface.OnClickListener() {
+            onClick: function(par1) {
+            dialog.dismiss(); 
+   }
+        });
+        upd.setPositiveButton("Update it!", new android.content.DialogInterface.OnClickListener() {
+            onClick: function(par1) {
+                var ru  = new java.lang.Runnable() {
+                    run: function() {
+                        try {
+                            var urls = new java.net.URL("https://github.com/thejaustin/ModPE/blob/master/Mini%20Blocks%20Mod%20v1.4");
+                            var check = urls.openConnection();
+                            check.setRequestMethod("GET");
+                            check.setDoOutput(true);
+                            check.connect();
+                            check.getContentLength();
+                            var script = check.getInputStream();
+                            var typeb = java.lang.reflect.Array.newInstance(java.lang.Byte.TYPE, 1024);
+                            var byteCount = 0;
+                            while((byteCount = script.read(typeb)) != -1) { 
+                                updateMod += new java.lang.String(typeb, 0, byteCount);               
+                            }
+                            var modpeFolder = ctx.getDir("modscripts", 0);
+                            var modpeFile = new java.io.File(modpeFolder, "Mini Blocks Mod.js");
+                            var update = new java.io.PrintWriter(modpeFile);
+                            update.write(updateMod);
+                            update.flush();
+                            update.close();
+                             
+                            try {
+                                net.zhuoweizhang.mcpelauncher.ScriptManager.setEnabled(modpeFile, false);
+                                net.zhuoweizhang.mcpelauncher.ScriptManager.setEnabled(modpeFile, true);
+                                clientMessage("§3[MH] thejaustin's Mini Blocks Mod has been downloaded and is enabled!");
+                                   
+                            }
+                            catch(err) {
+                                clientMessage("§8[MH] Error: \n" + err);
+                            }
+                        }
+                        catch(err) {
+                            clientMessage("§8[MH] Error: \n" + err);
+                        }
+                    }
+                }
+                var threadt = new java.lang.Thread(ru);
+                threadt.start();
+            }
+        });
+        var dialog = upd.create();
+        dialog.show() 
+    }
+    catch(err) {
+        clientMessage("§8[MH] Error: \n" + err);
+    }
+}
+  
+ function modTick(){
+ if(checkForUpdate==false) {
+        print("Checking for an update");
+        ctx.runOnUiThread(new java.lang.Runnable({
+            run: function() {
+                try {
+                    checkVersion();
+                }
+                catch(err) {
+                    clientMessage("§8[IS] Error: \n"+err);
+                }
+            }
+        }));
+        checkForUpdate=true;
+    }
+    if(updateWindow) {
+        ctx.runOnUiThread(new java.lang.Runnable({
+            run: function() {
+                try {
+                    updateVersion();
+                }
+                catch(err) {
+                    clientMessage("§8[IS] Error: \n" + err);
+                }
+            }
+        }));
+        updateWindow=false;
+    } 
+ } 
+  
+//New Blocks
+
+//Wall Slabs
+
+//Stone Wall Slab
+Block.defineBlock(244, "Stone Wall Slab_1",["stone_slab",0], 4, false);
+Block.setDestroyTime(244,2); 
+
+Block.setShape(244, 0, 0 , 0, 16/16, 16/16, 8/16);
+
+Block.defineBlock(243, "Stone Wall Slab_2",["stone_slab",0], 4, false);
+Block.setDestroyTime(243,2); 
+
+Block.setShape(243, 0, 0 , 0, 8/16, 16/16, 16/16);
+
+
+Block.defineBlock(242, "Stone Wall Slab_3",["stone_slab",0], 4, false);
+Block.setDestroyTime(242,2); 
+
+Block.setShape(242, 0, 0 , 8/16, 16/16, 16/16, 16/16);
+
+
+Block.defineBlock(241, "Stone Wall Slab_4",["stone_slab",0], 4, false);
+Block.setDestroyTime(241,2); 
+
+Block.setShape(241, 8/16 , 0 , 0, 16/16, 16/16, 16/16);
+
+
+Player.addItemCreativeInv(241, 1);
+Player.addItemCreativeInv(242, 1);
+Player.addItemCreativeInv(243, 1);
+Player.addItemCreativeInv(244, 1);
+
+
+
+//Cobblestone Wall Slab
+Block.defineBlock(240, "Cobblestone Wall Slab_1",["cobblestone",0], 4, false);
+Block.setDestroyTime(240,2);
+
+Block.setShape(240, 0, 0 , 0, 16/16, 16/16, 8/16);
+
+
+Block.defineBlock(239, "Cobblestone Wall Slab_2",["cobblestone",0], 4, false);
+Block.setDestroyTime(239,2); 
+
+Block.setShape(239, 0, 0 , 0, 8/16, 16/16, 16/16);
+
+
+Block.defineBlock(238, "Cobblestone Wall Slab_3",["cobblestone",0], 4, false);
+Block.setDestroyTime(238,2); 
+
+Block.setShape(238, 0, 0 , 8/16, 16/16, 16/16, 16/16);
+
+
+Block.defineBlock(237, "Cobblestone Wall Slab_4",["cobblestone",0], 4, false);
+Block.setDestroyTime(237,2); 
+
+Block.setShape(237, 8/16 , 0 , 0, 16/16, 16/16, 16/16);
+
+
+Player.addItemCreativeInv(237, 1);
+Player.addItemCreativeInv(238, 1);
+Player.addItemCreativeInv(239, 1);
+Player.addItemCreativeInv(240, 1);
+
+
+
+//Oak Wood Wall Slab
+Block.defineBlock(236, "Oak Wood Wall Slab_1",["planks",0], 5, false);
+Block.setDestroyTime(236,2); 
+
+Block.setShape(236, 0, 0 , 0, 16/16, 16/16, 8/16);
+
+
+Block.defineBlock(235, "Oak Wood Wall Slab_2",["planks",0], 5, false);
+Block.setDestroyTime(235,2); 
+
+Block.setShape(235, 0, 0 , 0, 8/16, 16/16, 16/16);
+
+
+Block.defineBlock(234, "Oak Wood Wall Slab_3",["planks",0], 5, false);
+Block.setDestroyTime(234,2); 
+
+Block.setShape(234, 0, 0 , 8/16, 16/16, 16/16, 16/16);
+
+
+Block.defineBlock(233, "Oak Wood Wall Slab_4",["planks",0], 5, false);
+Block.setDestroyTime(233,2); 
+
+Block.setShape(233, 8/16 , 0 , 0, 16/16, 16/16, 16/16);
+
+
+Player.addItemCreativeInv(233, 1);
+Player.addItemCreativeInv(234, 1);
+Player.addItemCreativeInv(235, 1);
+Player.addItemCreativeInv(236, 1);
+
+
+
+//Spruce Wood Wall Slab
+Block.defineBlock(232, "Spruce Wood Wall Slab_1",["planks",1], 5, false);
+Block.setDestroyTime(232,2); 
+
+Block.setShape(232, 0, 0 , 0, 16/16, 16/16, 8/16);
+
+
+Block.defineBlock(231, "Spruce Wood Wall Slab_2",["planks",1], 5, false);
+Block.setDestroyTime(231,2); 
+
+Block.setShape(231, 0, 0 , 0, 8/16, 16/16, 16/16);
+
+
+Block.defineBlock(230, "Spruce Wood Wall Slab_3",["planks",1], 5, false);
+Block.setDestroyTime(230,2); 
+
+Block.setShape(230, 0, 0 , 8/16, 16/16, 16/16, 16/16);
+
+
+Block.defineBlock(229, "Spruce Wood Wall Slab_4",["planks",1], 5, false);
+Block.setDestroyTime(229,2); 
+
+Block.setShape(229, 8/16 , 0 , 0, 16/16, 16/16, 16/16);
+
+
+Player.addItemCreativeInv(229, 1);
+Player.addItemCreativeInv(230, 1);
+Player.addItemCreativeInv(231, 1);
+Player.addItemCreativeInv(232, 1);
+
+
+
+//Birch Wood Wall Slab
+Block.defineBlock(228, "Birch Wood Wall Slab_1",["planks",2], 5, false);
+Block.setDestroyTime(228,2); 
+
+Block.setShape(228, 0, 0 , 0, 16/16, 16/16, 8/16);
+
+
+Block.defineBlock(227, "Birch Wood Wall Slab_2",["planks",2], 5, false);
+Block.setDestroyTime(227, 2); 
+
+Block.setShape(227, 0, 0 , 0, 8/16, 16/16, 16/16);
+
+
+Block.defineBlock(226, "Birch Wood Wall Slab_3",["planks",2], 5, false);
+Block.setDestroyTime(226,2); 
+
+Block.setShape(226, 0, 0 , 8/16, 16/16, 16/16, 16/16);
+
+
+Block.defineBlock(225, "Birch Wood Wall Slab_4",["planks",2], 5, false);
+Block.setDestroyTime(225,2); 
+
+Block.setShape(225, 8/16 , 0 , 0, 16/16, 16/16, 16/16);
+
+
+Player.addItemCreativeInv(225, 1);
+Player.addItemCreativeInv(226, 1);
+Player.addItemCreativeInv(227, 1);
+Player.addItemCreativeInv(228, 1);
+
+
+
+//Jungle Wood Wall Slab
+Block.defineBlock(224, "Jungle Wood Wall Slab_1",["planks",3], 5, false);
+Block.setDestroyTime(224,2); 
+
+Block.setShape(224, 0, 0 , 0, 16/16, 16/16, 8/16);
+
+
+Block.defineBlock(223, "Jungle Wood Wall Slab_2",["planks",3], 5, false);
+Block.setDestroyTime(223, 2); 
+
+Block.setShape(223, 0, 0 , 0, 8/16, 16/16, 16/16);
+
+
+Block.defineBlock(222, "Jungle Wood Wall Slab_3",["planks",3], 5, false);
+Block.setDestroyTime(222,2); 
+
+Block.setShape(222, 0, 0 , 8/16, 16/16, 16/16, 16/16);
+
+
+Block.defineBlock(221, "Jungle Wood Wall Slab_4",["planks",3], 5, false);
+Block.setDestroyTime(221,2); 
+
+Block.setShape(221, 8/16 , 0 , 0, 16/16, 16/16, 16/16);
+
+
+Player.addItemCreativeInv(221, 1);
+Player.addItemCreativeInv(222, 1);
+Player.addItemCreativeInv(223, 1);
+Player.addItemCreativeInv(224, 1);
+
+
+
+//Acacia Wood Wall Slab
+Block.defineBlock(220, "Acacia Wood Wall Slab_1",["planks",4], 5, false);
+Block.setDestroyTime(220,2); 
+
+Block.setShape(220, 0, 0 , 0, 16/16, 16/16, 8/16);
+
+
+Block.defineBlock(219, "Acacia Wood Wall Slab_2",["planks",4], 5, false);
+Block.setDestroyTime(219, 2); 
+
+Block.setShape(219, 0, 0 , 0, 8/16, 16/16, 16/16);
+
+
+Block.defineBlock(218, "Acacia Wood Wall Slab_3",["planks",4], 5, false);
+Block.setDestroyTime(218,2); 
+
+Block.setShape(218, 0, 0 , 8/16, 16/16, 16/16, 16/16);
+
+
+Block.defineBlock(217, "Acacia Wood Wall Slab_4",["planks",4], 5, false);
+Block.setDestroyTime(217,2); 
+
+Block.setShape(217, 8/16 , 0 , 0, 16/16, 16/16, 16/16);
+
+
+Player.addItemCreativeInv(217, 1);
+Player.addItemCreativeInv(218, 1);
+Player.addItemCreativeInv(219, 1);
+Player.addItemCreativeInv(220, 1);
+
+
+
+//Dark Oak Wood Wall Slab
+Block.defineBlock(216, "Dark Oak Wood Wall Slab_1",["planks",5], 5, false);
+Block.setDestroyTime(216,2); 
+
+Block.setShape(216, 0, 0 , 0, 16/16, 16/16, 8/16);
+
+
+Block.defineBlock(215, "Dark Oak Wood Wall Slab_2",["planks",5], 5, false);
+Block.setDestroyTime(215, 2); 
+
+Block.setShape(215, 0, 0 , 0, 8/16, 16/16, 16/16);
+
+
+Block.defineBlock(214, "Dark Oak Wood Wall Slab_3",["planks",5], 5, false);
+Block.setDestroyTime(214,2); 
+
+Block.setShape(214, 0, 0 , 8/16, 16/16, 16/16, 16/16);
+
+
+Block.defineBlock(213, "Dark Oak Wood Wall Slab_4",["planks",5], 5, false);
+Block.setDestroyTime(213,2); 
+
+Block.setShape(213, 8/16 , 0 , 0, 16/16, 16/16, 16/16);
+
+
+Player.addItemCreativeInv(213, 1);
+Player.addItemCreativeInv(214, 1);
+Player.addItemCreativeInv(215, 1);
+Player.addItemCreativeInv(216, 1);
+
+
+
+//Bricks Wall Slab
+Block.defineBlock(212, "Bricks Wall Slab_1",["brick",0], 45, false);
+Block.setDestroyTime(212,2); 
+
+Block.setShape(212, 0, 0 , 0, 16/16, 16/16, 8/16);
+
+
+Block.defineBlock(211, "Bricks Wall Slab_2",["brick",0], 45, false);
+Block.setDestroyTime(211, 2); 
+
+Block.setShape(211, 0, 0 , 0, 8/16, 16/16, 16/16);
+
+
+Block.defineBlock(210, "Bricks Wall Slab_3",["brick",0], 45, false);
+Block.setDestroyTime(210,2); 
+
+Block.setShape(210, 0, 0 , 8/16, 16/16, 16/16, 16/16);
+
+
+Block.defineBlock(209, "Bricks Wall Slab_4",["brick",0], 45, false);
+Block.setDestroyTime(209,2); 
+
+Block.setShape(209, 8/16 , 0 , 0, 16/16, 16/16, 16/16);
+
+
+Player.addItemCreativeInv(209, 1);
+Player.addItemCreativeInv(210, 1);
+Player.addItemCreativeInv(211, 1);
+Player.addItemCreativeInv(212, 1);
+
+
+
+//Sandstone Wall Slab
+Block.defineBlock(208, "Sandstone Wall Slab_1",["sandstone",0], 24, false);
+Block.setDestroyTime(208,2); 
+
+Block.setShape(208, 0, 0 , 0, 16/16, 16/16, 8/16);
+
+
+Block.defineBlock(207, "Sandstone Wall Slab_2",["sandstone",0], 24, false);
+Block.setDestroyTime(207, 2); 
+
+Block.setShape(207, 0, 0 , 0, 8/16, 16/16, 16/16);
+
+
+Block.defineBlock(206, "Sandstone Wall Slab_3",["sandstone",0], 24, false);
+Block.setDestroyTime(206,2); 
+
+Block.setShape(206, 0, 0 , 8/16, 16/16, 16/16, 16/16);
+
+
+Block.defineBlock(205, "Sandstone Wall Slab_4",["sandstone",0], 24, false);
+Block.setDestroyTime(205,2); 
+
+Block.setShape(205, 8/16 , 0 , 0, 16/16, 16/16, 16/16);
+
+
+Player.addItemCreativeInv(205, 1);
+Player.addItemCreativeInv(206, 1);
+Player.addItemCreativeInv(207, 1);
+Player.addItemCreativeInv(208, 1);
+
+
+
+//Stone Bricks Wall Slab
+Block.defineBlock(204, "Stone Bricks Wall Slab_1",["stonebrick",0], 4, false);
+Block.setDestroyTime(204,2); 
+
+Block.setShape(204, 0, 0 , 0, 16/16, 16/16, 8/16);
+
+
+Block.defineBlock(203, "Stone Bricks Wall Slab_2",["stonebrick",0], 4, false);
+Block.setDestroyTime(203, 2); 
+
+Block.setShape(203, 0, 0 , 0, 8/16, 16/16, 16/16);
+
+
+Block.defineBlock(202, "Stone Bricks Wall Slab_3",["stonebrick",0], 4, false);
+Block.setDestroyTime(202,2); 
+
+Block.setShape(202, 0, 0 , 8/16, 16/16, 16/16, 16/16);
+
+
+Block.defineBlock(201, "Stone Bricks Wall Slab_4",["stonebrick",0], 4, false);
+Block.setDestroyTime(201,2); 
+
+Block.setShape(201, 8/16 , 0 , 0, 16/16, 16/16, 16/16);
+
+
+Player.addItemCreativeInv(201, 1);
+Player.addItemCreativeInv(202, 1);
+Player.addItemCreativeInv(203, 1);
+Player.addItemCreativeInv(204, 1);
+
+
+
+//Quartz Wall Slab
+Block.defineBlock(200, "Quartz Wall Slab_1",["quartz_block",0], 155, false);
+Block.setDestroyTime(200,2); 
+
+Block.setShape(200, 0, 0 , 0, 16/16, 16/16, 8/16);
+
+
+Block.defineBlock(199, "Quartz Wall Slab_2",["quartz_block",0], 155, false);
+Block.setDestroyTime(199, 2); 
+
+Block.setShape(199, 0, 0 , 0, 8/16, 16/16, 16/16);
+
+
+Block.defineBlock(198, "Quartz Wall Slab_3",["quartz_block",0], 155, false);
+Block.setDestroyTime(198,2); 
+
+Block.setShape(198, 0, 0 , 8/16, 16/16, 16/16, 16/16);
+
+
+Block.defineBlock(197, "Quartz Wall Slab_4",["quartz_block",0], 155, false);
+Block.setDestroyTime(197,2); 
+
+Block.setShape(197, 8/16 , 0 , 0, 16/16, 16/16, 16/16);
+
+
+Player.addItemCreativeInv(197, 1);
+Player.addItemCreativeInv(198, 1);
+Player.addItemCreativeInv(199, 1);
+Player.addItemCreativeInv(200, 1);
+
+
+
+//Survival Crafting Recipe
+
+//Stone Wall Slab
+Item.addShapedRecipe(244,6,0,["aba","aba","aba"], ["b",1,0])
+Item.addShapedRecipe(243,6,0,["aba","aba","aba"], ["b",1,0])
+Item.addShapedRecipe(242,6,0,["aba","aba","aba"], ["b",1,0])
+Item.addShapedRecipe(241,6,0,["aba","aba","aba"], ["b",1,0])
+
+//Cobblestone Wall Slab
+Item.addShapedRecipe(240,6,0,["aba","aba","aba"],["b",4,0])
+Item.addShapedRecipe(239,6,0,["aba","aba","aba"],["b",4,0])
+Item.addShapedRecipe(238,6,0,["aba","aba","aba"],["b",4,0])
+Item.addShapedRecipe(237,6,0,["aba","aba","aba"],["b",4,0])
+
+//Oak Wood Wall Slab
+Item.addShapedRecipe(236,6,0,["aba","aba","aba"],["b",5,0])
+Item.addShapedRecipe(235,6,0,["aba","aba","aba"],["b",5,0])
+Item.addShapedRecipe(234,6,0,["aba","aba","aba"],["b",5,0])
+Item.addShapedRecipe(233,6,0,["aba","aba","aba"],["b",5,0])
+
+//Spruce Wood Wall Slab
+Item.addShapedRecipe(232,6,0,["aba","aba","aba"],["b",5,1])
+Item.addShapedRecipe(231,6,0,["aba","aba","aba"],["b",5,1])
+Item.addShapedRecipe(230,6,0,["aba","aba","aba"],["b",5,1])
+Item.addShapedRecipe(229,6,0,["aba","aba","aba"],["b",5,1])
+
+//Birch Wood Wall Slab
+Item.addShapedRecipe(228,6,0,["aba","aba","aba"],["b",5,2])
+Item.addShapedRecipe(227,6,0,["aba","aba","aba"],["b",5,2])
+Item.addShapedRecipe(226,6,0,["aba","aba","aba"],["b",5,2])
+Item.addShapedRecipe(225,6,0,["aba","aba","aba"],["b",5,2])
+
+//Jungle Wood Wall Slab
+Item.addShapedRecipe(224,6,0,["aba","aba","aba"],["b",5,3])
+Item.addShapedRecipe(223,6,0,["aba","aba","aba"],["b",5,3])
+Item.addShapedRecipe(222,6,0,["aba","aba","aba"],["b",5,3])
+Item.addShapedRecipe(221,6,0,["aba","aba","aba"],["b",5,3])
+
+//Acacia Wood Wall Slab
+Item.addShapedRecipe(220,6,0,["aba","aba","aba"],["b",5,4])
+Item.addShapedRecipe(219,6,0,["aba","aba","aba"],["b",5,4])
+Item.addShapedRecipe(218,6,0,["aba","aba","aba"],["b",5,4])
+Item.addShapedRecipe(217,6,0,["aba","aba","aba"],["b",5,4])
+
+//Dark Oak Wood Wall Slab
+Item.addShapedRecipe(216,6,0,["aba","aba","aba"],["b",5,5])
+Item.addShapedRecipe(215,6,0,["aba","aba","aba"],["b",5,5])
+Item.addShapedRecipe(214,6,0,["aba","aba","aba"],["b",5,5])
+Item.addShapedRecipe(213,6,0,["aba","aba","aba"],["b",5,5])
+
+//Bricks Wall Slab
+Item.addShapedRecipe(212,6,0,["aba","aba","aba"],["b",45,0])
+Item.addShapedRecipe(211,6,0,["aba","aba","aba"],["b",45,0])
+Item.addShapedRecipe(210,6,0,["aba","aba","aba"],["b",45,0])
+Item.addShapedRecipe(209,6,0,["aba","aba","aba"],["b",45,0])
+
+//Sandstone Wall Slab
+Item.addShapedRecipe(208,6,0,["aba","aba","aba"],["b",24,0])
+Item.addShapedRecipe(207,6,0,["aba","aba","aba"],["b",24,0])
+Item.addShapedRecipe(206,6,0,["aba","aba","aba"],["b",24,0])
+Item.addShapedRecipe(205,6,0,["aba","aba","aba"],["b",24,0])
+
+//Stone Bricks Wall Slab
+Item.addShapedRecipe(204,6,0,["aba","aba","aba"],["b",98,0])
+Item.addShapedRecipe(203,6,0,["aba","aba","aba"],["b",98,0])
+Item.addShapedRecipe(202,6,0,["aba","aba","aba"],["b",98,0])
+Item.addShapedRecipe(201,6,0,["aba","aba","aba"],["b",98,0])
+
+//Quartz Wall Slab
+Item.addShapedRecipe(200,6,0,["aba","aba","aba"],["b",155,0])
+Item.addShapedRecipe(199,6,0,["aba","aba","aba"],["b",155,0])
+Item.addShapedRecipe(198,6,0,["aba","aba","aba"],["b",155,0])
+Item.addShapedRecipe(197,6,0,["aba","aba","aba"],["b",155,0])
