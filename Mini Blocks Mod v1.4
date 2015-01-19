@@ -2,7 +2,7 @@
 //Don't steal this code! Do not take it as your own!
 //This is made for MCPE 0.10.5
 //Thanks to @byteandahalf on Twitter for helping me fix the X-Ray next to the new blocks
-
+//Thanks to @desno365 on Twitter for helping with the automatic update system
 
 
 //Entering Game
@@ -42,20 +42,20 @@ var ctx = com.mojang.minecraftpe.MainActivity.currentMainActivity.get();
                 }
                 newUpdate = checkedVersion;
                 if(version+"\n" != checkedVersion) {
-                    clientMessage("§8[MH] §fMini Blocks Mod has an update! " + newUpdate);
+                    clientMessage("§8[Mini Blocks] §fMini Blocks Mod has an update! " + newUpdate);
                     updateWindow=true;
                 }
                 else if(version+"\n"==checkedVersion){
-                clientMessage("§8[MH] There aren't any updates right now");
+                clientMessage("§8[Mini Blocks] There aren't any updates right now");
                 }
             }
             catch(err) {
-                clientMessage("§8[MH] Update check failed ");
+                clientMessage("§8[Mini Blocks] Update check failed ");
                 if(err=="JavaException: java.net.UnknownHostException: raw.githubusercontent.com") {
-                                clientMessage("§8[MH] Cannot connect to internet.");
+                                clientMessage("§8[Mini Blocks] Cannot connect to internet.");
                             }
                             else {
-                                clientMessage("§8[MH]   Error: \n" + err);
+                                clientMessage("§8[Mini Blocks]   Error: \n" + err);
                             } 
             }
         }
@@ -68,7 +68,7 @@ function updateVersion() {
         var upd = new android.app.AlertDialog.Builder(ctx);
         upd.setTitle("Mini Blocks Mod has an update!");
         upd.setMessage("thejaustin's Mini Blocks Mod has an update!\nDo you want to update it now?\nCurrent version: " + version + "\nNew version: " + newUpdate);
-        upd.setNegativeButton("Not right now", new android.content.DialogInterface.OnClickListener() {
+        upd.setNegativeButton("Maybe Later", new android.content.DialogInterface.OnClickListener() {
             onClick: function(par1) {
             dialog.dismiss(); 
    }
@@ -100,15 +100,15 @@ function updateVersion() {
                             try {
                                 net.zhuoweizhang.mcpelauncher.ScriptManager.setEnabled(modpeFile, false);
                                 net.zhuoweizhang.mcpelauncher.ScriptManager.setEnabled(modpeFile, true);
-                                clientMessage("§3[MH] thejaustin's Mini Blocks Mod has been downloaded and is enabled!");
+                                clientMessage("§3[Mini Blocks] thejaustin's Mini Blocks Mod has been downloaded and is enabled!");
                                    
                             }
                             catch(err) {
-                                clientMessage("§8[MH] Error: \n" + err);
+                                clientMessage("§8[Mini Blocks] Error: \n" + err);
                             }
                         }
                         catch(err) {
-                            clientMessage("§8[MH] Error: \n" + err);
+                            clientMessage("§8[Mini Blocks] Error: \n" + err);
                         }
                     }
                 }
@@ -120,7 +120,7 @@ function updateVersion() {
         dialog.show() 
     }
     catch(err) {
-        clientMessage("§8[MH] Error: \n" + err);
+        clientMessage("§8[Mini Blocks] Error: \n" + err);
     }
 }
   
@@ -133,7 +133,7 @@ function updateVersion() {
                     checkVersion();
                 }
                 catch(err) {
-                    clientMessage("§8[IS] Error: \n"+err);
+                    clientMessage("§8[Mini Blocks] Error: \n"+err);
                 }
             }
         }));
@@ -146,7 +146,7 @@ function updateVersion() {
                     updateVersion();
                 }
                 catch(err) {
-                    clientMessage("§8[IS] Error: \n" + err);
+                    clientMessage("§8[Mini Blocks] Error: \n" + err);
                 }
             }
         }));
