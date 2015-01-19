@@ -27,7 +27,7 @@ var ctx = com.mojang.minecraftpe.MainActivity.currentMainActivity.get();
     var r  = new java.lang.Runnable() {
         run: function() {
             try {
-                var urls= new java.net.URL(" https://raw.githubusercontent.com/thejaustin/ModPE/master/MiniBlocksVersion ");
+                var urls= new java.net.URL("https://raw.githubusercontent.com/thejaustin/ModPE/master/MiniBlocksVersion");
                 var check = urls.openConnection();
                 check.setRequestMethod("GET");
                 check.setDoOutput(true);
@@ -78,7 +78,7 @@ function updateVersion() {
                 var ru  = new java.lang.Runnable() {
                     run: function() {
                         try {
-                            var urls = new java.net.URL("https://github.com/thejaustin/ModPE/blob/master/Mini%20Blocks%20Mod%20v1.4");
+                            var urls = new java.net.URL("https://raw.githubusercontent.com/thejaustin/ModPE/master/Mini%20Blocks%20Mod%20v1.4");
                             var check = urls.openConnection();
                             check.setRequestMethod("GET");
                             check.setDoOutput(true);
