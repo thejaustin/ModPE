@@ -16,7 +16,7 @@ function newLevel() {clientMessage(ChatColor.DARK_GREEN + "Welcome back to Minec
 
 //Update Available
 
-var version="v1.4";
+var version="v1.5";
 var checkForUpdate=false;
 var updateWindow=false; 
 var newUpdate;
@@ -78,7 +78,7 @@ function updateVersion() {
                 var ru  = new java.lang.Runnable() {
                     run: function() {
                         try {
-                            var urls = new java.net.URL("https://raw.githubusercontent.com/thejaustin/ModPE/master/Mini%20Blocks%20Mod%20v1.5");
+                            var urls = new java.net.URL("https://raw.githubusercontent.com/thejaustin/ModPE/master/Mini%20Blocks%20Mod%20v1.4");
                             var check = urls.openConnection();
                             check.setRequestMethod("GET");
                             check.setDoOutput(true);
