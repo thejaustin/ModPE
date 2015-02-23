@@ -1,4 +1,4 @@
-//Mini Blocks Mod v1.5 by thejaustin
+//Mini Blocks Mod v1.6 by thejaustin
 //Don't steal this code! Do not take it as your own!
 //This is made for MCPE 0.10.5
 //Thanks to @byteandahalf on Twitter for helping me fix the X-Ray next to the new blocks
@@ -6,8 +6,9 @@
 
 
 //Entering Game
-function newLevel() {clientMessage(ChatColor.DARK_GREEN + "Welcome back to Minecraft PE!");
-{clientMessage(ChatColor.BLUE + "You are using the Mini Blocks Mod!");
+function newLevel() 
+{clientMessage(ChatColor.DARK_GREEN + "Welcome back to Minecraft PE!");
+{clientMessage(ChatColor.BLUE + "You are using the Mini Blocks Mod v1.6!");
 {clientMessage(ChatColor.GOLD + "This Mod was created by thejaustin");
 {clientMessage(ChatColor.RED + "I'm on Twitter!");
 {clientMessage(ChatColor.RED + "Username- @thejaustin");
@@ -15,8 +16,7 @@ function newLevel() {clientMessage(ChatColor.DARK_GREEN + "Welcome back to Minec
 } } } } } }
 
 //Update Available
-
-var version="v1.5";
+var version="v1.6";
 var checkForUpdate=false;
 var updateWindow=false; 
 var newUpdate;
@@ -50,9 +50,9 @@ var ctx = com.mojang.minecraftpe.MainActivity.currentMainActivity.get();
                 }
             }
             catch(err) {
-                clientMessage("§8[Mini Blocks] Update check failed ");
+                clientMessage("§8[Mini Blocks] Update check failed- Can't connect to internet!");
                 if(err=="JavaException: java.net.UnknownHostException: raw.githubusercontent.com") {
-                                clientMessage("§8[Mini Blocks] Cannot connect to internet.");
+                                clientMessage("§8[Mini Blocks] Can't connect to internet.");
                             }
                             else {
                                 clientMessage("§8[Mini Blocks]   Error: \n" + err);
@@ -91,7 +91,7 @@ function updateVersion() {
                                 updateMod += new java.lang.String(typeb, 0, byteCount);               
                             }
                             var modpeFolder = ctx.getDir("modscripts", 0);
-                            var modpeFile = new java.io.File(modpeFolder, "Mini Blocks Mod v1.4.js");
+                            var modpeFile = new java.io.File(modpeFolder, "Mini Blocks Mod.js");
                             var update = new java.io.PrintWriter(modpeFile);
                             update.write(updateMod);
                             update.flush();
@@ -161,31 +161,25 @@ function updateVersion() {
 //Stone Wall Slab
 Block.defineBlock(249, "Stone Wall Slab_1",["stone_slab",0], 4, false);
 Block.setDestroyTime(249,2); 
-
 Block.setShape(249, 0, 0 , 0, 16/16, 16/16, 8/16);
+
 
 Block.defineBlock(248, "Stone Wall Slab_2",["stone_slab",0], 4, false);
 Block.setDestroyTime(248,2); 
-
 Block.setShape(248, 0, 0 , 0, 8/16, 16/16, 16/16);
 
 
 Block.defineBlock(242, "Stone Wall Slab_3",["stone_slab",0], 4, false);
 Block.setDestroyTime(242,2); 
-
 Block.setShape(242, 0, 0 , 8/16, 16/16, 16/16, 16/16);
 
 
-Block.defineBlock(241, "Stone Wall Slab_4",["stone_slab",0], 4, false);
+Block.defineBlock(241, "Stone Wall Slab_4", ["stone_slab",0], false);
 Block.setDestroyTime(241,2); 
-
 Block.setShape(241, 8/16 , 0 , 0, 16/16, 16/16, 16/16);
 
 
 Player.addItemCreativeInv(241, 1);
-Player.addItemCreativeInv(242, 1);
-Player.addItemCreativeInv(248, 1);
-Player.addItemCreativeInv(249, 1);
 
 
 
@@ -464,7 +458,7 @@ Block.setDestroyTime(206,2);
 Block.setShape(206, 0, 0 , 8/16, 16/16, 16/16, 16/16);
 
 
-Block.defineBlock(205, "Sandstone Wall Slab_4",["sandstone",0], 24, false);
+Block.defineBlock(205, "Sandstone Wall Slab_4", ["sandstone", 0], 24, false);
 Block.setDestroyTime(205,2); 
 
 Block.setShape(205, 8/16 , 0 , 0, 16/16, 16/16, 16/16);
@@ -541,11 +535,47 @@ Player.addItemCreativeInv(200, 1);
 
 
 
+//Glass Wall Slabs
+Block.defineBlock(196, "Glass Wall Slabs_1",["glass",0], 20, false);
+Block.setDestroyTime(196,2); 
+
+Block.setShape(196, 0, 0 , 0, 16/16, 16/16, 8/16);
+Block.setRenderLayer(196,1);
+
+
+Block.defineBlock(195, "Glass Wall Slab_2",["glass",0], 20, false);
+Block.setDestroyTime(195, 2); 
+
+Block.setShape(195, 0, 0 , 0, 8/16, 16/16, 16/16);
+Block.setRenderLayer(195,1);
+
+
+Block.defineBlock(194, "Glass Wall Slab_3",["glass",0], 20, false);
+Block.setDestroyTime(194,2); 
+
+Block.setShape(194, 0, 0 , 8/16, 16/16, 16/16, 16/16);
+Block.setRenderLayer(194,1);
+
+
+Block.defineBlock(193, "Glass Wall Slab_4",["glass",0], 20, false);
+Block.setDestroyTime(193,2); 
+
+Block.setShape(193, 8/16 , 0 , 0, 16/16, 16/16, 16/16);
+Block.setRenderLayer(193,1);
+
+
+Player.addItemCreativeInv(193, 1);
+Player.addItemCreativeInv(194, 1);
+Player.addItemCreativeInv(195, 1);
+Player.addItemCreativeInv(196, 1);
+
+
+
 //Survival Crafting Recipe
 
 //Stone Wall Slab
-Item.addShapedRecipe(244,6,0,["aba","aba","aba"], ["b",1,0])
-Item.addShapedRecipe(243,6,0,["aba","aba","aba"], ["b",1,0])
+Item.addShapedRecipe(249,6,0,["aba","aba","aba"], ["b",1,0])
+Item.addShapedRecipe(248,6,0,["aba","aba","aba"], ["b",1,0])
 Item.addShapedRecipe(242,6,0,["aba","aba","aba"], ["b",1,0])
 Item.addShapedRecipe(241,6,0,["aba","aba","aba"], ["b",1,0])
 
@@ -615,6 +645,76 @@ Item.addShapedRecipe(199,6,0,["aba","aba","aba"],["b",155,0])
 Item.addShapedRecipe(198,6,0,["aba","aba","aba"],["b",155,0])
 Item.addShapedRecipe(197,6,0,["aba","aba","aba"],["b",155,0])
 
+//Glass Wall Slabs
+Item.addShapedRecipe(196,6,0,["aba","aba","aba"],["b",20,0])
+Item.addShapedRecipe(195,6,0,["aba","aba","aba"],["b",20,0])
+Item.addShapedRecipe(194,6,0,["aba","aba","aba"],["b",20,0])
+Item.addShapedRecipe(193,6,0,["aba","aba","aba"],["b",20,0])
+
+
+
 //One block for each side
 
 //Stone Wall Slab
+
+/*var yaw;
+var id;
+var ready=false;
+//pre-define variables
+
+function useItem(x,y,z,itemId,blockId,side){
+ if(itemId==241){ //only use the id 241 because that is the one in the creative inventory. Also, make this the only craftable wall slab
+ preventDefault(); //don't set the block down
+ yaw=getYaw(getPlayerEnt())+45; //find the yaw plus 45 so that 0 to 90 is actually 45 to 135
+ findYaw(); //find yaw within range of 0 to 360
+ if(ready==true){ //once it finds it
+ if(yaw>=0&&yaw<90){
+ id=242;
+ }
+ if(yaw>=90&&yaw<180){
+ id=248;
+ }
+ if(yaw>=180&&yaw<270){
+ id=249;
+ }
+ if(yaw>=270&&yaw<360){
+ id=241;
+ }
+ }
+ if(side==1){ //if you tap top of block
+ setTile(x,y+1,z,id,0);
+ }
+ if(side==0){ //bottom
+ setTile(x,y-1,z,id,0);
+ }
+ if(side==2){ //For the other sides it actually doesnt even matter what direction you are facing, just put the block directly facing (away from) the with the wall
+ setTile(x,y,z-1,242,0);
+ }
+ if(side==3){
+ setTile(x,y,z+1,249,0);
+ }
+ if(side==5){ 
+ setTile(x+1,y,z,248,0);
+ }
+ if(side==4){
+ setTile(x-1,y,z,241,0);
+ }
+ 
+ }
+ 
+}
+
+function findYaw(){ //finds the Yaw of the player within range of 0 to 360
+ if(yaw>360){ //if it's greater than 360 than subtract 360 and do it again (If this was not here than turning twice around would put us at 720 and continue to go up. We want to stay in the range of 0 to 360)
+ yaw=yaw-360;
+ findYaw();
+ }
+ if(yaw<0){ //if its less than zero than add 360 (turning the other way pretty much but same reason as above)
+ yaw=yaw+360;
+ findYaw();
+ }
+ if(yaw>=0&&yaw<=360){ //if it's in the range we want then tell us that we are ready
+ ready=true;
+}}*/
+
+  
