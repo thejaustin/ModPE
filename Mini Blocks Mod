@@ -1,19 +1,16 @@
-//Mini Blocks Mod v1.8 by thejaustin
+//Mini Blocks Mod v1.9 by thejaustin
 //Don't steal this code! Do not take it as your own!
-//This is made for MCPE 0.10.5
-//Thanks to @byteandahalf on Twitter for helping me fix the X-Ray next to the new blocks
-//Thanks to @desno365 on Twitter for helping me add blocks to creative (0.11.0 Update), and with dropping the correct Mini Blocks when broken!
-//All the 'Blocks turn in the direction you're facing' code was made by androidKaghon
+//This is made for MCPE 0.11.1
+//The 'Blocks turn in the direction you're facing' code was made by androidKaghon, so thanks!
 
 //Entering Game
 function newLevel(){
 {clientMessage(ChatColor.DARK_GREEN + "Welcome back to Minecraft PE!");
-{clientMessage(ChatColor.BLUE + "You are using the Mini Blocks Mod v1.8!"); //Mod Name & Version
+{clientMessage(ChatColor.BLUE + "You are using the Mini Blocks Mod v1.9!"); //Mod Name & Version
 {clientMessage(ChatColor.GOLD + "This Mod was created by thejaustin");
-{clientMessage(ChatColor.RED + "v1.8 Changelog: 0.11.0 Supported, smaller code, fixed drops, fixed break time, & added block placing sound!"); //Changelog stuffs
-{clientMessage(ChatColor.AQUA + "I'm on Twitter!");
-{clientMessage(ChatColor.AQUA + "Username- @thejaustin");
-}}}}}}
+{clientMessage(ChatColor.RED + "v1.9 Changelog: Correct Lighting, & Wall Slabs can be combined!"); //Changelog stuffs
+{clientMessage(ChatColor.AQUA + "Follow me on Twitter, \n§b@thejaustin!");
+}}}}}
 //Add Wall Slabs to Creative Inv
 if(gamemode=1){
 //Stone Wall Slab
@@ -46,7 +43,7 @@ Player.addItemCreativeInv(193, 1);
 
 
 //Update Available
-var version="v1.8";
+var version="v1.9";
 var checkForUpdate=false;
 var updateWindow=false; 
 var newUpdate;
@@ -150,220 +147,272 @@ clientMessage("§8[Mini Blocks] Error: \n" + err);
 } } } ) );
 updateWindow=false;
 } }
+//Full Stone Slab
+Block.defineBlock(192, "Stone Wall Slab_1",["stone_slab",0], 1, false);
+Block.setDestroyTime(192,2)
+Block.setLightOpacity(192,0);
+
 //Wall Slabs
 
 //Stone Wall Slab
 Block.defineBlock(249, "Stone Wall Slab_1",["stone_slab",0], 1, false);
 Block.setShape(249, 0, 0 , 0, 16/16, 16/16, 8/16);
 Block.setDestroyTime(249,2)
+Block.setLightOpacity(249,0);
 
 Block.defineBlock(248, "Stone Wall Slab_2",["stone_slab",0], 1, false);
 Block.setShape(248, 0, 0 , 0, 8/16, 16/16, 16/16);
 Block.setDestroyTime(248,2)
+Block.setLightOpacity(248,0);
 
 Block.defineBlock(242, "Stone Wall Slab_3",["stone_slab",0], 1, false);
 Block.setShape(242, 0, 0 , 8/16, 16/16, 16/16, 16/16);
 Block.setDestroyTime(242,2)
+Block.setLightOpacity(242,0);
 
 Block.defineBlock(241, "Stone Wall Slab",["stone_slab",0], 1, false); 
 Block.setShape(241, 8/16 , 0 , 0, 16/16, 16/16, 16/16);
 Block.setDestroyTime(241,2)
+Block.setLightOpacity(241,0);
 
 
 //Cobblestone Wall Slab
 Block.defineBlock(240, "Cobblestone Wall Slab_1",["cobblestone",0], 4, false);
 Block.setShape(240, 0, 0 , 0, 16/16, 16/16, 8/16);
 Block.setDestroyTime(240,2)
+Block.setLightOpacity(240,0);
 
 Block.defineBlock(239, "Cobblestone Wall Slab_2",["cobblestone",0], 4, false);
 Block.setShape(239, 0, 0 , 0, 8/16, 16/16, 16/16);
 Block.setDestroyTime(239,2)
+Block.setLightOpacity(239,0);
 
 Block.defineBlock(238, "Cobblestone Wall Slab_3",["cobblestone",0], 4, false);
 Block.setShape(238, 0, 0 , 8/16, 16/16, 16/16, 16/16);
 Block.setDestroyTime(238,2)
+Block.setLightOpacity(238,0);
 
 Block.defineBlock(237, "Cobblestone Wall Slab",["cobblestone",0], 4, false);
 Block.setShape(237, 8/16 , 0 , 0, 16/16, 16/16, 16/16);
 Block.setDestroyTime(237,2)
+Block.setLightOpacity(237,0);
 
 
 //Oak Wood Wall Slab
 Block.defineBlock(236, "Oak Wood Wall Slab_1",["planks",0], 5, false);
 Block.setShape(236, 0, 0 , 0, 16/16, 16/16, 8/16);
 Block.setDestroyTime(236,2)
+Block.setLightOpacity(236,0);
 
 Block.defineBlock(235, "Oak Wood Wall Slab_2",["planks",0], 5, false);
 Block.setShape(235, 0, 0 , 0, 8/16, 16/16, 16/16);
 Block.setDestroyTime(235,2)
+Block.setLightOpacity(235,0);
 
 Block.defineBlock(234, "Oak Wood Wall Slab_3",["planks",0], 5, false);
 Block.setShape(234, 0, 0 , 8/16, 16/16, 16/16, 16/16);
 Block.setDestroyTime(234,2)
+Block.setLightOpacity(234,0);
 
 Block.defineBlock(233, "Oak Wood Wall Slab",["planks",0], 5, false);
 Block.setShape(233, 8/16 , 0 , 0, 16/16, 16/16, 16/16);
 Block.setDestroyTime(233,2)
+Block.setLightOpacity(233,0);
 
 
 //Spruce Wood Wall Slab
 Block.defineBlock(232, "Spruce Wood Wall Slab_1",["planks",1], 5, false);
 Block.setShape(232, 0, 0 , 0, 16/16, 16/16, 8/16);
 Block.setDestroyTime(232,2)
+Block.setLightOpacity(232,0);
 
 Block.defineBlock(231, "Spruce Wood Wall Slab_2",["planks",1], 5, false);
 Block.setShape(231, 0, 0 , 0, 8/16, 16/16, 16/16);
 Block.setDestroyTime(231,2)
+Block.setLightOpacity(231,0);
 
 Block.defineBlock(230, "Spruce Wood Wall Slab_3",["planks",1], 5, false);
 Block.setShape(230, 0, 0 , 8/16, 16/16, 16/16, 16/16);
 Block.setDestroyTime(230,2)
+Block.setLightOpacity(230,0);
 
 Block.defineBlock(229, "Spruce Wood Wall Slab",["planks",1], 5, false);
 Block.setShape(229, 8/16 , 0 , 0, 16/16, 16/16, 16/16);
 Block.setDestroyTime(229,2)
+Block.setLightOpacity(229,0);
 
 
 //Birch Wood Wall Slab
 Block.defineBlock(228, "Birch Wood Wall Slab_1",["planks",2], 5, false);
 Block.setShape(228, 0, 0 , 0, 16/16, 16/16, 8/16);
 Block.setDestroyTime(228,2)
+Block.setLightOpacity(228,0);
 
 Block.defineBlock(227, "Birch Wood Wall Slab_2",["planks",2], 5, false);
 Block.setShape(227, 0, 0 , 0, 8/16, 16/16, 16/16);
 Block.setDestroyTime(227,2)
+Block.setLightOpacity(227,0);
 
 Block.defineBlock(226, "Birch Wood Wall Slab_3",["planks",2], 5, false);
 Block.setShape(226, 0, 0 , 8/16, 16/16, 16/16, 16/16);
 Block.setDestroyTime(226,2)
+Block.setLightOpacity(226,0);
 
 Block.defineBlock(225, "Birch Wood Wall Slab",["planks",2], 5, false);
 Block.setShape(225, 8/16 , 0 , 0, 16/16, 16/16, 16/16);
 Block.setDestroyTime(225,2)
+Block.setLightOpacity(225,0);
 
 
 //Jungle Wood Wall Slab
 Block.defineBlock(224, "Jungle Wood Wall Slab_1",["planks",3], 5, false);
 Block.setShape(224, 0, 0 , 0, 16/16, 16/16, 8/16);
 Block.setDestroyTime(224,2)
+Block.setLightOpacity(224,0);
 
 Block.defineBlock(223, "Jungle Wood Wall Slab_2",["planks",3], 5, false);
 Block.setShape(223, 0, 0 , 0, 8/16, 16/16, 16/16);
 Block.setDestroyTime(223,2)
+Block.setLightOpacity(223,0);
 
 Block.defineBlock(222, "Jungle Wood Wall Slab_3",["planks",3], 5, false);
 Block.setShape(222, 0, 0 , 8/16, 16/16, 16/16, 16/16);
 Block.setDestroyTime(222,2)
+Block.setLightOpacity(222,0);
 
 Block.defineBlock(221, "Jungle Wood Wall Slab",["planks",3], 5, false);
 Block.setShape(221, 8/16 , 0 , 0, 16/16, 16/16, 16/16);
 Block.setDestroyTime(221,2)
+Block.setLightOpacity(221,0);
 
 
 //Acacia Wood Wall Slab
 Block.defineBlock(220, "Acacia Wood Wall Slab_1",["planks",4], 5, false);
 Block.setShape(220, 0, 0 , 0, 16/16, 16/16, 8/16);
 Block.setDestroyTime(220,2)
+Block.setLightOpacity(220,0);
 
 Block.defineBlock(219, "Acacia Wood Wall Slab_2",["planks",4], 5, false);
 Block.setShape(219, 0, 0 , 0, 8/16, 16/16, 16/16);
 Block.setDestroyTime(219,2)
+Block.setLightOpacity(219,0);
 
 Block.defineBlock(218, "Acacia Wood Wall Slab_3",["planks",4], 5, false);
 Block.setShape(218, 0, 0 , 8/16, 16/16, 16/16, 16/16);
 Block.setDestroyTime(218,2)
+Block.setLightOpacity(218,0);
 
 Block.defineBlock(217, "Acacia Wood Wall Slab",["planks",4], 5, false);
 Block.setShape(217, 8/16 , 0 , 0, 16/16, 16/16, 16/16);
 Block.setDestroyTime(217,2)
+Block.setLightOpacity(217,0);
 
 
 //Dark Oak Wood Wall Slab
 Block.defineBlock(216, "Dark Oak Wood Wall Slab_1",["planks",5], 5, false);
 Block.setShape(216, 0, 0 , 0, 16/16, 16/16, 8/16);
 Block.setDestroyTime(216,2)
+Block.setLightOpacity(216,0);
 
 Block.defineBlock(215, "Dark Oak Wood Wall Slab_2",["planks",5], 5, false);
 Block.setShape(215, 0, 0 , 0, 8/16, 16/16, 16/16);
 Block.setDestroyTime(215,2)
+Block.setLightOpacity(215,0);
 
 Block.defineBlock(214, "Dark Oak Wood Wall Slab_3",["planks",5], 5, false);
 Block.setShape(214, 0, 0 , 8/16, 16/16, 16/16, 16/16);
 Block.setDestroyTime(214,2)
+Block.setLightOpacity(214,0);
 
 Block.defineBlock(213, "Dark Oak Wood Wall Slab",["planks",5], 5, false);
 Block.setShape(213, 8/16 , 0 , 0, 16/16, 16/16, 16/16);
 Block.setDestroyTime(213,2)
+Block.setLightOpacity(213,0);
 
 
 //Brick Wall Slab
 Block.defineBlock(212, "Bricks Wall Slab_1",["brick",0], 45, false);
 Block.setShape(212, 0, 0 , 0, 16/16, 16/16, 8/16);
 Block.setDestroyTime(212,2)
+Block.setLightOpacity(212,0);
 
 Block.defineBlock(211, "Bricks Wall Slab_2",["brick",0], 45, false);
 Block.setShape(211, 0, 0 , 0, 8/16, 16/16, 16/16);
 Block.setDestroyTime(211,2)
+Block.setLightOpacity(211,0);
 
 Block.defineBlock(210, "Bricks Wall Slab_3",["brick",0], 45, false);
 Block.setShape(210, 0, 0 , 8/16, 16/16, 16/16, 16/16);
 Block.setDestroyTime(210,2)
+Block.setLightOpacity(210,0);
 
 Block.defineBlock(209, "Bricks Wall Slab",["brick",0], 45, false);
 Block.setShape(209, 8/16 , 0 , 0, 16/16, 16/16, 16/16);
 Block.setDestroyTime(209,2)
+Block.setLightOpacity(209,0);
 
 //Sandstone Wall Slab
-Block.defineBlock(208, "Sandstone Wall Slab_1",["sandstone",0], 24, false);
+Block.defineBlock(208, "Sandstone Wall Slab_1",[["sandstone",4], ["sandstone",3], ["sandstone",0], ["sandstone",0], ["sandstone",0], ["sandstone",0]], 24, false);
 Block.setShape(208, 0, 0 , 0, 16/16, 16/16, 8/16);
 Block.setDestroyTime(208,0.8)
+Block.setLightOpacity(208,0);
 
-Block.defineBlock(207, "Sandstone Wall Slab_2",["sandstone",0], 24, false);
+Block.defineBlock(207, "Sandstone Wall Slab_2", [["sandstone",4], ["sandstone",3], ["sandstone",0], ["sandstone",0], ["sandstone",0], ["sandstone",0]], 24, false);
 Block.setShape(207, 0, 0 , 0, 8/16, 16/16, 16/16);
 Block.setDestroyTime(207,0.8)
+Block.setLightOpacity(207,0);
 
-Block.defineBlock(206, "Sandstone Wall Slab_3",["sandstone",0], 24, false);
+Block.defineBlock(206, "Sandstone Wall Slab_3", [["sandstone",4], ["sandstone",3], ["sandstone",0], ["sandstone",0], ["sandstone",0], ["sandstone",0]], 24, false);
 Block.setShape(206, 0, 0 , 8/16, 16/16, 16/16, 16/16);
 Block.setDestroyTime(206,0.8)
+Block.setLightOpacity(206,0);
 
-Block.defineBlock(205, "Sandstone Wall Slab", ["sandstone", 0], 24, false);
+Block.defineBlock(205, "Sandstone Wall Slab", [["sandstone",4], ["sandstone",3], ["sandstone",0], ["sandstone",0], ["sandstone",0], ["sandstone",0]], 24, false);
 Block.setShape(205, 8/16 , 0 , 0, 16/16, 16/16, 16/16);
 Block.setDestroyTime(205,0.8)
+Block.setLightOpacity(205,0);
 
 //Stone Bricks Wall Slab
 Block.defineBlock(204, "Stone Bricks Wall Slab_1",["stonebrick",0], 98, false);
 Block.setShape(204, 0, 0 , 0, 16/16, 16/16, 8/16);
 Block.setDestroyTime(204,1.5)
+Block.setLightOpacity(204,0);
 
 Block.defineBlock(203, "Stone Bricks Wall Slab_2",["stonebrick",0], 98, false);
 Block.setShape(203, 0, 0 , 0, 8/16, 16/16, 16/16);
 Block.setDestroyTime(203,1.5)
+Block.setLightOpacity(203,0);
 
 Block.defineBlock(202, "Stone Bricks Wall Slab_3",["stonebrick",0], 98, false);
 Block.setShape(202, 0, 0 , 8/16, 16/16, 16/16, 16/16);
 Block.setDestroyTime(202,1.5)
-
+Block.setLightOpacity(202,0);
 Block.defineBlock(201, "Stone Bricks Wall Slab",["stonebrick",0], 98, false);
 Block.setShape(201, 8/16 , 0 , 0, 16/16, 16/16, 16/16);
 Block.setDestroyTime(201,1.5)
+Block.setLightOpacity(201,0);
 
 
 //Quartz Wall Slab
 Block.defineBlock(200, "Quartz Wall Slab_1",["quartz_block",0], 155, false);
 Block.setShape(200, 0, 0 , 0, 16/16, 16/16, 8/16);
 Block.setDestroyTime(200,0.8)
+Block.setLightOpacity(200,0);
 
 Block.defineBlock(199, "Quartz Wall Slab_2",["quartz_block",0], 155, false);
 Block.setShape(199, 0, 0 , 0, 8/16, 16/16, 16/16);
 Block.setDestroyTime(199,0.8)
+Block.setLightOpacity(199,0);
 
 Block.defineBlock(198, "Quartz Wall Slab_3",["quartz_block",0], 155, false);
 Block.setShape(198, 0, 0 , 8/16, 16/16, 16/16, 16/16);
 Block.setDestroyTime(198,0.8)
+Block.setLightOpacity(198,0);
 
 Block.defineBlock(197, "Quartz Wall Slab",["quartz_block",0], 155, false);
 Block.setShape(197, 8/16 , 0 , 0, 16/16, 16/16, 16/16);
 Block.setDestroyTime(197,0.8)
+Block.setLightOpacity(197,0);
 
 
 //Glass Wall Slabs
@@ -371,21 +420,25 @@ Block.defineBlock(196, "Glass Wall Slabs_1",["glass",0], 20, false);
 Block.setShape(196, 0, 0 , 0, 16/16, 16/16, 8/16);
 Block.setRenderLayer(196,1);
 Block.setDestroyTime(196,0.3)
+Block.setLightOpacity(196,0);
 
 Block.defineBlock(195, "Glass Wall Slab_2",["glass",0], 20, false);
 Block.setShape(195, 0, 0 , 0, 8/16, 16/16, 16/16);
 Block.setRenderLayer(195,1);
 Block.setDestroyTime(195,0.3)
+Block.setLightOpacity(195,0);
 
 Block.defineBlock(194, "Glass Wall Slab_3",["glass",0], 20, false);
 Block.setShape(194, 0, 0 , 8/16, 16/16, 16/16, 16/16);
 Block.setRenderLayer(194,1);
 Block.setDestroyTime(194,0.3)
+Block.setLightOpacity(194,0);
 
 Block.defineBlock(193, "Glass Wall Slab",["glass",0], 20, false);
 Block.setShape(193, 8/16 , 0 , 0, 16/16, 16/16, 16/16);
 Block.setRenderLayer(193,1);
 Block.setDestroyTime(193,0.3)
+Block.setLightOpacity(193,0);
 
 //Survival Crafting Recipe
 
@@ -1043,4 +1096,293 @@ findYaw();
 }if(yaw>=0&&yaw<=360){
 ready=true;
 } Level.playSound(getPlayerX(),getPlayerY(),getPlayerZ(),"step.stone",30,25);
- } }
+ }
+
+//Wall Slabs becoming Blocks
+
+//Stone Wall Slab
+if(blockId==249&&itemId==241){
+if(side==3){
+setTile(x,y,z,192);
+setTile(x,y,z+1,0);
+} }
+if(blockId==248&&itemId==241){
+if(side==5){
+setTile(x,y,z,192);
+setTile(x+1,y,z,0);
+} }
+if(blockId==242&&itemId==241){
+if(side==2){
+setTile(x,y,z,192);
+setTile(x,y,z-1,0);
+} }
+if(blockId==241&&itemId==241){
+if(side==4){
+setTile(x,y,z,192);
+setTile(x-1,y,z,0);
+} }
+
+//Cobblestone Wall Slab
+if(blockId==240&&itemId==237){
+if(side==3){
+setTile(x,y,z,4);
+setTile(x,y,z+1,0);
+} }
+if(blockId==239&&itemId==237){
+if(side==5){
+setTile(x,y,z,4);
+setTile(x+1,y,z,0);
+} }
+if(blockId==238&&itemId==237){
+if(side==2){
+setTile(x,y,z,4);
+setTile(x,y,z-1,0);
+} }
+if(blockId==237&&itemId==237){
+if(side==4){
+setTile(x,y,z,4);
+setTile(x-1,y,z,0);
+} }
+
+//Oak Wood Wall Slab
+if(blockId==236&&itemId==233){
+if(side==3){
+setTile(x,y,z,5);
+setTile(x,y,z+1,0);
+} }
+if(blockId==235&&itemId==233){
+if(side==5){
+setTile(x,y,z,5);
+setTile(x+1,y,z,0);
+} }
+if(blockId==234&&itemId==233){
+if(side==2){
+setTile(x,y,z,5);
+setTile(x,y,z-1,0);
+} }
+if(blockId==233&&itemId==233){
+if(side==4){
+setTile(x,y,z,5);
+setTile(x-1,y,z,0);
+} }
+
+//Spruce Wood Wall Slab
+if(blockId==232&&itemId==229){
+if(side==3){
+setTile(x,y,z,5,1);
+setTile(x,y,z+1,0);
+} }
+if(blockId==231&&itemId==229){
+if(side==5){
+setTile(x,y,z,5,1);
+setTile(x+1,y,z,0);
+} }
+if(blockId==230&&itemId==229){
+if(side==2){
+setTile(x,y,z,5,1);
+setTile(x,y,z-1,0);
+} }
+if(blockId==229&&itemId==229){
+if(side==4){
+setTile(x,y,z,5,1);
+setTile(x-1,y,z,0);
+} }
+
+//Birch Wood Wall Slab
+if(blockId==228&&itemId==225){
+if(side==3){
+setTile(x,y,z,5,2);
+setTile(x,y,z+1,0);
+} }
+if(blockId==227&&itemId==225){
+if(side==5){
+setTile(x,y,z,5,2);
+setTile(x+1,y,z,0);
+} }
+if(blockId==226&&itemId==225){
+if(side==2){
+setTile(x,y,z,5,2);
+setTile(x,y,z-1,0);
+} }
+if(blockId==225&&itemId==225){
+if(side==4){
+setTile(x,y,z,5,2);
+setTile(x-1,y,z,0);
+} } 
+
+//Jungle Wood Wall Slab
+if(blockId==224&&itemId==221){
+if(side==3){
+setTile(x,y,z,5,3);
+setTile(x,y,z+1,0);
+} }
+if(blockId==223&&itemId==221){
+if(side==5){
+setTile(x,y,z,5,3);
+setTile(x+1,y,z,0);
+} }
+if(blockId==222&&itemId==221){
+if(side==2){
+setTile(x,y,z,5,3);
+setTile(x,y,z-1,0);
+} }
+if(blockId==221&&itemId==221){
+if(side==4){
+setTile(x,y,z,5,3);
+setTile(x-1,y,z,0);
+} }
+
+//Acacia Wood Wall Slab
+if(blockId==220&&itemId==217){
+if(side==3){
+setTile(x,y,z,5,4);
+setTile(x,y,z+1,0);
+} }
+if(blockId==219&&itemId==217){
+if(side==5){
+setTile(x,y,z,5,4);
+setTile(x+1,y,z,0);
+} }
+if(blockId==218&&itemId==217){
+if(side==2){
+setTile(x,y,z,5,4);
+setTile(x,y,z-1,0);
+} }
+if(blockId==217&&itemId==217){
+if(side==4){
+setTile(x,y,z,5,4);
+setTile(x-1,y,z,0);
+} }
+
+//Dark Oak Wood Wall Slab
+if(blockId==216&&itemId==213){
+if(side==3){
+setTile(x,y,z,5,5);
+setTile(x,y,z+1,0);
+} }
+if(blockId==215&&itemId==213){
+if(side==5){
+setTile(x,y,z,5,5);
+setTile(x+1,y,z,0);
+} }
+if(blockId==214&&itemId==213){
+if(side==2){
+setTile(x,y,z,5,5);
+setTile(x,y,z-1,0);
+} }
+if(blockId==213&&itemId==213){
+if(side==4){
+setTile(x,y,z,5,5);
+setTile(x-1,y,z,0);
+} }
+
+//Bricks Wall Slab
+if(blockId==212&&itemId==209){
+if(side==3){
+setTile(x,y,z,45);
+setTile(x,y,z+1,0);
+} }
+if(blockId==211&&itemId==209){
+if(side==5){
+setTile(x,y,z,45);
+setTile(x+1,y,z,0);
+} }
+if(blockId==210&&itemId==209){
+if(side==2){
+setTile(x,y,z,45);
+setTile(x,y,z-1,0);
+} }
+if(blockId==209&&itemId==209){
+if(side==4){
+setTile(x,y,z,45);
+setTile(x-1,y,z,0);
+} }
+
+//Sandstone Wall Slab
+if(blockId==208&&itemId==205){
+if(side==3){
+setTile(x,y,z,24);
+setTile(x,y,z+1,0);
+} }
+if(blockId==207&&itemId==205){
+if(side==5){
+setTile(x,y,z,24);
+setTile(x+1,y,z,0);
+} }
+if(blockId==206&&itemId==205){
+if(side==2){
+setTile(x,y,z,24);
+setTile(x,y,z-1,0);
+} }
+if(blockId==205&&itemId==205){
+if(side==4){
+setTile(x,y,z,24);
+setTile(x-1,y,z,0);
+} }
+
+//Stone Bricks Wall Slab
+if(blockId==204&&itemId==201){
+if(side==3){
+setTile(x,y,z,98);
+setTile(x,y,z+1,0);
+} }
+if(blockId==203&&itemId==201){
+if(side==5){
+setTile(x,y,z,98);
+setTile(x+1,y,z,0);
+} }
+if(blockId==202&&itemId==201){
+if(side==2){
+setTile(x,y,z,98);
+setTile(x,y,z-1,0);
+} }
+if(blockId==201&&itemId==201){
+if(side==4){
+setTile(x,y,z,98);
+setTile(x-1,y,z,0);
+} }
+
+//Quartz Wall Slab
+if(blockId==200&&itemId==197){
+if(side==3){
+setTile(x,y,z,43,6);
+setTile(x,y,z+1,0);
+} }
+if(blockId==199&&itemId==197){
+if(side==5){
+setTile(x,y,z,43,6);
+setTile(x+1,y,z,0);
+} }
+if(blockId==198&&itemId==197){
+if(side==2){
+setTile(x,y,z,43,6);
+setTile(x,y,z-1,0);
+} }
+if(blockId==197&&itemId==197){
+if(side==4){
+setTile(x,y,z,43,6);
+setTile(x-1,y,z,0);
+} }
+
+//Glass Wall Slab
+if(blockId==196&&itemId==193){
+if(side==3){
+setTile(x,y,z,20);
+setTile(x,y,z+1,0);
+} }
+if(blockId==195&&itemId==193){
+if(side==5){
+setTile(x,y,z,20);
+setTile(x+1,y,z,0);
+} }
+if(blockId==194&&itemId==193){
+if(side==2){
+setTile(x,y,z,20);
+setTile(x,y,z-1,0);
+} }
+if(blockId==193&&itemId==193){
+if(side==4){
+setTile(x,y,z,20);
+setTile(x-1,y,z,0);
+} }
+}
